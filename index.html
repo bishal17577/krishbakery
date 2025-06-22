@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krish Bakery Coffee Shop and Gift House</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Satisfy&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <style>
+        /* === ATTRACTIVE CSS STYLES WITH NAVIGATION === */
+
+        /* --- Color Palette & Basic Setup --- */
+        :root {
+            --primary-color: #AD343E; /* A rich, warm red */
+            --secondary-color: #4A2511; /* A deep chocolate brown */
+            --background-color: #FFF8F0; /* A soft, creamy off-white */
+            --card-bg-color: #ffffff;
+            --text-color: #4A4A4A; /* A softer, dark grey */
+            --light-text-color: #fff;
+            --accent-color: #E8C282; /* A soft, elegant gold/tan */
+            --shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 12px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- Top Navigation (Desktop) --- */
+        .top-nav {
+            display: none; /* Hidden on mobile by default */
+            background-color: rgba(74, 37, 17, 0.85); /* Dark brown with transparency */
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .top-nav .logo {
+            font-family: 'Satisfy', cursive;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .top-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .top-nav ul li a {
+            color: var(--light-text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .top-nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .top-nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .top-nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Header Styling --- */
+        .header {
+            background: linear-gradient(rgba(40, 20, 10, 0.5), rgba(40, 20, 10, 0.5)), url('https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y2FrZXxlbnwwfHwwfHx8MA%3D%3D') no-repeat center center/cover;
+            padding: 4rem 1rem 5rem 1rem;
+            text-align: center;
+            color: var(--light-text-color);
+            position: relative;
+        }
+
+        .header-content {
+            padding-top: 4rem; /* Add padding to push content below the top nav */
+        }
+
+        .header h1 {
+            font-family: 'Satisfy', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+            font-weight: 400;
+        }
+
+        .header h3 {
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        /* --- Search Bar Styling --- */
+        .search-container {
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        #search-input {
+            width: 90%;
+            max-width: 550px;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.4s ease;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--light-text-color);
+            backdrop-filter: blur(5px);
+        }
+
+        #search-input::placeholder { color: rgba(255, 255, 255, 0.7); }
+
+        #search-input:focus {
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(232, 194, 130, 0.5);
+        }
+
+        /* --- Section Styling (Home, About, Services) --- */
+        .content-section {
+            padding: 4rem 1rem 2rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-family: 'Satisfy', cursive;
+            font-size: 3rem;
+            color: var(--primary-color);
+            font-weight: 400;
+        }
+
+        .about-us-container, .services-container {
+             max-width: 800px;
+             margin: 0 auto;
+             padding: 2.5rem;
+             background-color: var(--card-bg-color);
+             border-radius: 16px;
+             box-shadow: var(--shadow);
+             text-align: center;
+        }
+        .about-us-container p, .services-container p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .services-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .services-list li {
+            background-color: var(--background-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            color: var(--primary-color);
+            font-weight: 600;
+            border: 1px solid var(--accent-color);
+        }
+
+        /* --- Filter Buttons Styling --- */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding-bottom: 2.5rem;
+            gap: 0.75rem;
+        }
+
+        .filter-btn {
+            background-color: var(--card-bg-color);
+            color: var(--primary-color);
+            border: 1px solid #EAEAEA;
+            padding: 0.6rem 1.25rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            letter-spacing: 0.5px;
+        }
+        .filter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary-color);
+        }
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(173, 52, 62, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* --- Cake Grid and Card Styling --- */
+        .cake-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cake-card {
+            background-color: var(--card-bg-color);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #F0F0F0;
+        }
+        .cake-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+        .cake-card img { width: 100%; height: 250px; object-fit: cover; cursor: pointer; transition: transform 0.4s ease; }
+        .cake-card:hover img { transform: scale(1.05); }
+        .cake-info { padding: 1.25rem 1.5rem 1.5rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .cake-info h3 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--secondary-color); font-weight: 600; }
+        .buy-btn { background: linear-gradient(45deg, #25D366, #128C7E); color: var(--light-text-color); border: none; padding: 0.8rem 1.5rem; border-radius: 50px; cursor: pointer; font-size: 1rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
+        .buy-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(18, 140, 126, 0.4); filter: brightness(1.1); }
+        .buy-btn::before { font-family: "Font Awesome 6 Brands"; content: "\f232"; }
+        
+        /* --- Footer Styling --- */
+        footer { text-align: center; padding: 3rem 1rem; background-color: var(--secondary-color); color: rgba(255,255,255,0.8); margin-top: 3rem; clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%); }
+        footer p { font-family: 'Satisfy', cursive; font-size: 1.8rem; color: var(--accent-color); }
+
+        /* --- Bottom Navigation (Mobile) --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--card-bg-color);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem 0;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
+            z-index: 100;
+            border-top: 1px solid #f0f0f0;
+        }
+        .bottom-nav a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--secondary-color);
+            flex-grow: 1;
+            padding: 0.3rem 0;
+            font-size: 0.7rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+        .bottom-nav a i {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+        .bottom-nav a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* --- Modal Styling --- */
+        .modal { display: none; position: fixed; z-index: 1000; padding: 20px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(30, 15, 5, 0.92); backdrop-filter: blur(8px); justify-content: center; align-items: center; }
+        .modal-content { margin: auto; display: block; max-width: 90%; max-height: 90vh; animation: zoomIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); border-radius: 10px; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
+        @keyframes zoomIn { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+        .close-modal { position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 45px; font-weight: 300; transition: 0.3s ease; cursor: pointer; text-shadow: 0 0 10px rgba(0,0,0,0.5); }
+        .close-modal:hover, .close-modal:focus { color: var(--accent-color); transform: rotate(90deg); }
+
+        /* --- Responsive Design Media Queries --- */
+        @media (max-width: 400px) { .cake-grid { grid-template-columns: 1fr; } }
+        @media (min-width: 768px) {
+            .cake-grid { grid-template-columns: repeat(3, 1fr); }
+            .header h1 { font-size: 5rem; }
+            .top-nav { display: flex; } /* Show top nav on desktop */
+            .bottom-nav { display: none; } /* Hide bottom nav on desktop */
+        }
+        @media (min-width: 1024px) {
+            .cake-grid { grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation (For Desktop) -->
+    <nav class="top-nav">
+        <a href="#" class="logo">Krish Bakery</a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+           
+            <li><a href="#services">Other Services</a></li>
+            <li><a href="Location">Location</a></li>
+        </ul>
+    </nav>
+
+    <header class="header">
+        <div class="header-content">
+            <h1>Krish Bakery Coffee Shop and Gift House</h1>
+            <h3>Gajuri-1,Dhading</h3>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for cakes (e.g., strawberry, black forest)...">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home / Cake Menu Section -->
+        <section id="home" class="content-section">
+            <h2 class="section-title">Our Cakes</h2>
+            <div class="filter-container" id="filter-container">
+                <!-- Filter buttons will be generated by JavaScript -->
+            </div>
+            <div class="cake-grid" id="cake-grid">
+                <!-- Cake cards will be dynamically inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="content-section">
+             <div class="about-us-container">
+                <h2 class="section-title">हाम्रो बारेमा</h2>
+      <p>  — कृष बेकरी, कफी सप् र गिफ्ट हाउस कृष बेकरी, कफी सप् र गिफ्ट हाउस तपाईंको मिठास, स्वाद र स्नेहको केन्द्र हो। यहाँ ताजा र स्वादिलो बेकरी सामान, मनमोहक कफी, अनि विशेष उपहारहरू पाइन्छन् जुन तपाईंका प्रियजनहरूलाई खुशी पार्न सकिन्छ। हाम्रो उद्देश्य भनेको ग्राहकलाई गुणस्तरीय सेवा, स्वच्छ वातावरण र आत्मीय व्यवहार प्रदान गर्नु हो। हामी हरेक चाडपर्व, जन्मदिन वा विशेष अवसरलाई अविस्मरणीय बनाउन सधैं तयार छौं। कृषमा तपाईं मिठो स्वादको अनुभव मात्र होइन, प्रेम र भावना पनि पाउनुहुनेछ। तपाईंको साथ र समर्थन हाम्रो प्रेरणा हो।</p>   </div>
+        </section>
+
+        <!-- Other Services Section -->
+        <section id="services" class="content-section">
+            <div class="services-container">
+                <h2 class="section-title">हाम्रो सेवाहरू</h2>
+                <p>हाम्रो मनमोहक केकहरू मात्र होइन, हामी तपाईँको उत्सवलाई अझ विशेष बनाउन विभिन्न सेवा पनि प्रदान गर्छौं। सुन्दर कफी अनुभवका लागि हामीकहाँ आउनुहोस् वा उपहार गृहबाट उपयुक्त उपहार छान्नुहोस्।</p>
+                <ul class="services-list">
+                    <li>अर्डर अनुसार विशेष केक बनाउने सेवा</li>
+                    <li>ताजा उमालिएको स्वादिलो कफी</li>
+                    <li>गिफ्ट बास्केटहरू</li>
+                    <li>पार्टी सामग्रीहरू</li>
+                   
+                    <li>हातले बनाइएका चकलेटहरू</li>
+                </ul>
+            </div>
+        </section>
+        
+    </main>
+
+    <section id="Location" class="content-section" style="background-color: #f8f8f8; padding: 40px 0; text-align: center;">
+        <div class="location-container">
+            <h2 class="section-title" style="color: #333; margin-bottom: 15px;">हाम्रो स्थान</h2>
+            <p style="font-size: 16px; color: #444;">कृष बेकरी, कफी सप र गिफ्ट हाउस</p>
+            <p style="font-size: 16px; color: #444;">गजुरी, धादिङ (नबिल बैंक नजिक)</p>
+            
+            <!-- Clickable Location -->
+            <p style="margin: 15px 0;">
+                📍 <a href="https://maps.app.goo.gl/8eRCC1uMccUYgc417" 
+                    target="_blank" 
+                    style="color: #007bff; text-decoration: underline; font-weight: bold;">
+                    यहाँबाट दिशानिर्देश हेर्नुहोस्
+                </a>
+            </p>
+    
+            <!-- Optional: Google Map Embed -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.104519559879!2d84.88472547537746!3d27.708752576173356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39955eb1d7927b0b%3A0x29dfd4cb01ae689e!2sNabil%20Bank%20Limited%2C%20Gajuri%20Branch!5e0!3m2!1sen!2snp!4v1718863950503!5m2!1sen!2snp" 
+                width="90%" 
+                height="300" 
+                style="border:0; border-radius: 10px; margin-top: 15px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+    
+    
+
+    <!-- Bottom Navigation (For Mobile) -->
+    <nav class="bottom-nav">
+        <a href="#home">
+            <i class="fas fa-cookie-bite"></i>
+            <span>Cakes</span>
+        </a>
+        <a href="#about">
+            <i class="fas fa-store"></i>
+            <span>About Us</span>
+        </a>
+        <a href="#services">
+            <i class="fas fa-concierge-bell"></i>
+            <span>Services</span>
+        </a>
+        <a href="#Location">
+            <i class="fas fa-concierge-bell"></i>
+            <span>Location</span>
+        </a>
+    </nav>
+
+    <!-- Image Zoom Modal -->
+    <div id="image-modal" class="modal">
+        <span class="close-modal">×</span>
+        <img class="modal-content" id="zoomed-image">
+    </div>
+
+    <script>
+        // JAVASCRIPT for all functionality (NO CHANGES MADE TO CORE LOGIC)
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const WHATSAPP_NUMBER = '9860121150';
+
+            // --- DATA: Your Cake Information ---
+            const cakesData = [
+           //black forest 
+           {name: '9860121150', category: 'Birthday Cake', "imageSrc": "https://i.ibb.co/s4yjMgf/27.jpg"},
+           {name: '9860121150', category: 'Birthday Cake', "imageSrc": "https://i.ibb.co/FbBTbMFG/25.jpg"},
+           //vanilla
+           { name: '9860121150', category: 'Birthday Cake', imageSrc: 'https://i.ibb.co/tMwVNLVx/Whats-App-Image-2025-06-17-at-12-37-04-pm.jpg' },
+           { name: '9860121150', category: 'Birthday Cake', imageSrc: 'https://i.ibb.co/jPnt9j5h/Whats-App-Image-2025-06-17-at-12-53-47-pm.jpg' },
+           { name: '9860121150', category: 'Birthday Cake', imageSrc: 'https://i.ibb.co/60C4FZ1B/Whats-App-Image-2025-06-17-at-12-53-48-pm.jpg' },
+           { name: '9860121150', category: 'Birthday Cake', imageSrc: 'https://i.ibb.co/qz6y84m/Whats-App-Image-2025-06-17-at-12-53-48-pm.jpg' },
+           //birthday
+           {"name": "9860121150","category": "Birthday Cake","imageSrc": "https://i.ibb.co/bRC51SQw/96.jpg"},
+           {"name": "9860121150","category": "Birthday Cake","imageSrc": "https://i.ibb.co/5hL2pj9D/88.jpg"},
+           {"name": "9860121150","category": "Birthday Cake","imageSrc": "https://i.ibb.co/j9vf2vjp/86.jpg"},
+           {"name": "9860121150","category": "Birthday Cake","imageSrc": "https://i.ibb.co/DP8rKC7B/85.jpg"},
+           {"name": "9860121150","category": "Birthday Cake","imageSrc": "https://i.ibb.co/Lz6ftjxZ/78.jpg"},
+           {"name": "9860121150","category": "Birthday Cake","imageSrc": "https://i.ibb.co/LdJxsgyP/76.jpg"},
+           {"name": "9860121150","category": "Birthday Cake","imageSrc": "https://i.ibb.co/vvCPBKcX/73.jpg"},
+           {"name": "9860121150","category": "Birthday Cake","imageSrc": "https://i.ibb.co/xKbpNXCv/54.jpg"},
+           {"name": "9860121150","category": "Birthday Cake","imageSrc": "https://i.ibb.co/j9fLkyqP/52.jpg"},
+           //heart
+           { name: '9860121150', category: 'Heart', imageSrc: 'https://i.ibb.co/tMmcmdym/Whats-App-Image-2025-06-17-at-12-53-49-pm.jpg' },
+           { name: '9860121150', category: 'Heart', imageSrc: 'https://i.ibb.co/Fb1vhTzK/138.jpg' },
+           { name: '9860121150', category: 'Heart', imageSrc:  'https://i.ibb.co/Q7ZsrT7X/136.jpg' },
+           { name: '9860121150', category: 'Heart', imageSrc:  'https://i.ibb.co/HS5XLz9/128.jpg' },
+           { name: '9860121150', category: 'Heart', imageSrc:'https://i.ibb.co/GfzKZNkd/133.jpg' },
+           { name: '9860121150', category: 'Heart', imageSrc:'https://i.ibb.co/DPysq4P7/124.jpg' },
+           { name: '9860121150', category: 'Birthday Cake', imageSrc: 'https://i.ibb.co/Xr8tw9CW/109.jpg' },
+           { name: '9860121150', category: 'Birthday Cake', imageSrc: 'https://i.ibb.co/kVXvq6QX/105.jpg' },
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/h1n01F6Y/95.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/Z6ZV0mGd/94.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/LyKwM75/91.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/GQqMHw0Q/89.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/TM4QnGSt/84.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/Hpdp4S2g/80.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/hJd4M05L/74.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/LzHZKtmT/70.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/v447m28F/69.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/RkDs060b/64.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/KpV4CxPP/63.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/jjfMbQV/61.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/HJhmbgk/60.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/4vPLfdd/20.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/TMkNg72Q/10.jpg"},
+           { name: '9860121150', category: 'Heart', "imageSrc": "https://i.ibb.co/9mbBby4k/55.jpg"},
+           { name: '9860121150', category: 'Heart', imageSrc: 'https://i.ibb.co/Q7jjSVgP/3.jpg' },
+           //cartoon
+           { name: '9860121150', category: 'Birthday Cake', "imageSrc": "https://i.ibb.co/HLwn4Zhd/50.jpg"},
+           { name: '9860121150', category: 'Birthday Cake', "imageSrc": "https://i.ibb.co/qVLc6GW/68.jpg"},
+           { "name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/Y73vqTmD/79.jpg"},
+           //wedding
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/prbBxyHc/n14.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/kghv3tGP/n13.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/JwkwrF4Z/n12.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/sJt84wJ2/n11.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/vfGHfrg/n10.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/QjQP4R8K/n9.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/fzP10gcm/n8.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/4BB62Lf/n7.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/S4C4nYNq/n6.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/7d6y1qLb/n5.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/TqNgWSQG/n4.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/v6zFcxtk/n3.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/rR1DfTw5/n2.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/WWYFPQMY/n1.jpg' },
+           { name: '9860121150', category: 'wedding Cake', imageSrc: 'https://i.ibb.co/ycXQpkmP/m2.jpg' },
+           //princess
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/qFrDQzgC/81.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/Txgz1hXx/87.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/XTMCPkt/90.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/ms76j1T/83.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/210pJh5m/82.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/20N7QJx4/75.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/PsGhDVH8/77.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/WN1NfKZj/49.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/qL7VLLfx/62.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/99Pr5C2C/72.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/WvqycycF/71.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/MxBBbBh2/65.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/Xf7xNTms/66.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/TxLMCTKq/56.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/Z62BPNZv/51.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/6032VVP9/46.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/s9FbzrLN/45.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/QLpnCZk/44.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/39bBVQhB/42.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/R4kPb0fr/41.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/qYch4by1/40.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/rfRnQ35z/image.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/s9syfq9T/36.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/WNmpGFkC/35.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/HDz2thp1/30.jpg"},
+           {"name": "9860121150", "category": "Princess Cake", "imageSrc": "https://i.ibb.co/35ZQGtrD/29.jpg"},
+           //black forest bottom
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/svxtvT6k/28.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/7LJXp87/26.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/HfsWFRrb/24.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/pvk5wsdQ/23.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/nsWBpjv4/21.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/S7GNs5pj/22.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/LX7XXpNZ/19.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/4nPTNVSm/131.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/Vchq3Vs6/130.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/Pvc6cLk6/129.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/pBt2Nwk1/108.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/LzbjH83m/117.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/93ngcvGq/12.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/whmkFNrq/11.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/F4RPJZQb/107.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/Xr8tw9CW/109.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/RpJpFrsM/7.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/F4gnXTfG/6.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/xqgQ5Fwj/5.jpg"},
+           {"name": "9860121150", "category": "Birthday Cake", "imageSrc": "https://i.ibb.co/Lhh5SL1Q/4.jpg"}         
+            ];
+
+            const shuffledCakes = cakesData.sort(() => 0.5 - Math.random());
+
+            const cakeGrid = document.getElementById('cake-grid');
+            const searchInput = document.getElementById('search-input');
+            const filterContainer = document.getElementById('filter-container');
+            
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('zoomed-image');
+            const closeModalBtn = document.querySelector('.close-modal');
+
+            const categories = ['ALL', ...new Set(cakesData.map(cake => cake.category))];
+            filterContainer.innerHTML = categories.map(category => 
+                `<button class="filter-btn ${category === 'ALL' ? 'active' : ''}" data-category="${category}">${category}</button>`
+            ).join('');
+
+            const displayCakes = (cakesToDisplay) => {
+                cakeGrid.innerHTML = '';
+                if (cakesToDisplay.length === 0) {
+                    cakeGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">No cakes found. Try a different search or filter.</p>';
+                    return;
+                }
+                
+                cakesToDisplay.forEach(cake => {
+                    const cakeCard = document.createElement('div');
+                    cakeCard.className = 'cake-card';
+                    
+                    const messageText = `मलाई यो डिजाइन मन पर्यो \n\n\n*Image:* ${cake.imageSrc}\n\nके म तपाईंलाई फोन गर्न सक्छु?`;
+                    const encodedMessage = encodeURIComponent(messageText);
+                    const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+                    cakeCard.innerHTML = `
+                        <img src="${cake.imageSrc}" alt="${cake.name}">
+                        <div class="cake-info">
+                            <h3>${cake.name}</h3>
+                            <a href="${whatsappLink}" class="buy-btn" target="_blank">Order Now</a>
+                        </div>
+                    `;
+                    cakeGrid.appendChild(cakeCard);
+                });
+            };
+
+            filterContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                    const selectedCategory = e.target.getAttribute('data-category');
+                    searchInput.value = '';
+
+                    if (selectedCategory === 'ALL') {
+                        displayCakes(shuffledCakes.slice(0, 200));
+                    } else {
+                        const filteredCakes = cakesData.filter(cake => cake.category === selectedCategory);
+                        displayCakes(filteredCakes.slice(0, 200));
+                    }
+                }
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelector('.filter-btn[data-category="ALL"]').classList.add('active');
+
+
+                if (searchTerm === '') {
+                    displayCakes(shuffledCakes.slice(0, 200));
+                } else {
+                    const searchResults = cakesData.filter(cake => 
+                        cake.name.toLowerCase().includes(searchTerm) ||
+                        cake.category.toLowerCase().includes(searchTerm)
+                    );
+                    displayCakes(searchResults);
+                }
+                // Scroll to the home section when searching
+                document.querySelector('#home').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            cakeGrid.addEventListener('click', e => {
+                if (e.target.tagName === 'IMG') {
+                    modal.style.display = "flex";
+                    modalImg.src = e.target.src;
+                }
+            });
+
+            const closeModal = () => {
+                modal.style.display = "none";
+            }
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', e => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Initial display of cakes
+            displayCakes(shuffledCakes.slice(0, 200));
+        });
+    </script>
+</body>
+</html>
